@@ -1,372 +1,549 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    var LanguageList = {
+        "ES": "Español",
+        "EN": "English",
+    };
+
+    //languages Objects
+    var WORDS_ES = {
+        //navbar
+        "navbar_inicio" : "INICIO",
+        "navbar_experiencia" : "EXPERIENCIA",
+        "navbar_educacion" : "EDUCACIÓN",
+        "navbar_tecnologias" : "TECNOLOGÍAS",
+        "navbar_intereses" : "SOBRE MI",
+        "navbar_cursos" : "CURSOS",
+        //inicio
+        "subtituloProfesional": "DESARROLLADOR & INGENIERO DE SOFTWARE ·",
+        "subtituloPersonal": "Graduado en la Universidad de la Rioja en Ingeniería informática y mención en ingeniería de Software.",
+        "descripcionPersonal1": "Las tecnologías en las que me especializo son principalmente la pila tecnológica de ASP NET Core.",
+        "descripcionPersonal2": "Mis preferencias son el desarrollo de aplicaciones y sus procesos de CI/ CD.",
+        "descripcionPersonal3": "Idiomas: Español e Inglés",
+
+        //about me
+        "descripcionSobreMi1": "Sobre mi...",
+        "descripcionSobreMi2": "Desde pequeño he querido estudiar informática como forma de mejorar la vida de las personas y contribuir al progreso, aunque también tengo otras aficiones como la música,viajar, deportes o simplemente leer un buen libro o una serie😃",
+        "descripcionSobreMi3": "Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo",
+
+        //educacion
+        "descripcionUniversidad": "GRADO EN INGENIERÍA INFORMÁTICA E INGENIERÍA DE SOFTWARE",
+        "descripcionBachiller": "BACHILLER CIENTÍFICO",
+        "descripcionConservatorio": "ESTUDIOS ELEMENTALES DE VIOLÍN",
+        "descripcionEso": "EDUCACIÓN SECUNDARIA OBLIGATORIA",
+
+        //cursos
+        "cursosCertificaciones" : "Cursos y Certificaciones"
+    };
+
+    var WORDS_EN = {
+        //navbar
+        "navbar_inicio" : "INTRODUCTION",
+        "navbar_experiencia" : "EXPERIENCE",
+        "navbar_educacion": "EDUCATION",
+        "navbar_tecnologias": "TECHNOLOGIES",
+        "navbar_intereses": "ABOUT ME",
+        "navbar_cursos": "COURSES",
+        //inicio
+        "subtituloProfesional": "DEVELOPER & SOFTWARE ENGINEER ·",
+        "subtituloPersonal": "Graduated from the University of La Rioja in Computer Engineering and mention in Software Engineering.",
+        "descripcionPersonal1": "The technologies I specialize in are primarily the ASP NET Core technology stack.",
+        "descripcionPersonal2": "My preferences are application development and CI/CD processes.",
+        "descripcionPersonal3": "Laguages: Spanish and English",
+        //sobre mi
+        "descripcionSobreMi1": "About me...",
+        "descripcionSobreMi2": "Since I was a child I have wanted to study computer science as a way to improve people's lives and contribute to progress, although I also have other hobbies such as music, travel, sports or just reading a good book or a series😃.",
+        "descripcionSobreMi3": "I consider myself a constant and hard-working person and I believe that my main aptitude is teamwork.",
+
+        //educacion
+        "descripcionUniversidad": "DEGREE IN COMPUTER AND SOFTWARE ENGINEERING",
+        "descripcionBachiller": "SCIENTIFIC BACHELOR'S DEGREE",
+        "descripcionConservatorio": "ELEMENTARY VIOLIN STUDIES",
+        "descripcionEso": "COMPULSORY SECONDARY EDUCATION",
+
+        //cursos
+        "cursosCertificaciones": "Courses and Certifications"
+    };
+
+
+
+
+    window.onload = initialize;
+
+    function initialize() {
+        var $dropdown = $("#country_select");
+        $.each(LanguageList, function (key, value) {
+            $dropdown.
+                append($("<option/>").
+                    val(key).
+                    text(value));
+        });
+
+        loadsLanguage("ES");
+    }
+
+    function loadsLanguage(lang) {
+        /*fills all the span tags with class=lang pattern*/
+        $('span[class^="lang"]').each(function () {
+            var LangVar = (this.className).replace('lang-', '');
+            var Text = window["WORDS_" + lang][LangVar];
+            $(this).text(Text);
+        });
+    }
+
+</script>
+
+
+<style>
+
+    .box select {
+        background-color: #1086c5;
+        margin-left: 80%;
+        margin-top: 2%;
+        color: white;
+        padding: 12px;
+        width: 250px;
+        border: none;
+        font-size: 20px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        -webkit-appearance: button;
+        appearance: button;
+        outline: none;
+    }
+
+    .box::before {
+        font-family: FontAwesome;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 20%;
+        height: 100%;
+        text-align: center;
+        font-size: 28px;
+        line-height: 45px;
+        color: rgba(255, 255, 255, 0.5);
+        background-color: rgba(255, 255, 255, 0.1);
+        pointer-events: none;
+    }
+
+    .box:hover::before {
+        color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .box select option {
+        padding: 30px;
+    }
+</style>
+
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>CV - Héctor Solar Ruiz</title>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-		<!-- <a title="Español" href="index.html"><img width="50" height="50" style="float:right;" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/icons/paises/spain.png" alt="..." /> </a> 
-		<a title="English" href="index_en.html"><img width="50" height="50" style="float:right;" class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/icons/paises/ingles.jfif" alt="..." /></a> -->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="CV " />
+    <meta name="author" content="Héctor Solar Ruiz" />
+    <title>CV - Héctor Solar Ruiz</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">Héctor Solar Ruiz</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+</head>
+<body id="page-top">
+    <!-- Navigation-->
 
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#sobremi">Sobre Mi</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experiencia">Experiencia</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#educacion">Educación</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#tecnologias">Tecnologías</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#intereses">Intereses</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cursos">Cursos</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <span class="d-block d-lg-none">Héctor Solar Ruiz</span>
+            <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.jpg" alt="..." /></span>
+
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#inicio"> <span class="lang-navbar_inicio"></span> </a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#intereses"><span class="lang-navbar_intereses"></span></a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experiencia"><span class="lang-navbar_experiencia"></span></a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#educacion"><span class="lang-navbar_educacion"></span></a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#tecnologias"><span class="lang-navbar_tecnologias"></span></a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#cursos"><span class="lang-navbar_cursos"></span></a></li>
+            </ul>
+
+        </div>
+    </nav>
+    <!-- Page Content-->
+    <div class="box">
+        <select id="country_select" onchange="loadsLanguage(this.value);">
+        </select>
+    </div>
+
+
+    <div class="container-fluid p-0">
+        <!-- About-->
+        <section class="resume-section" id="inicio">
+            <div class="resume-section-content">
+                <h1 class="mb-0">
+                    Héctor Solar Ruiz
+                    <!-- <span class="text-primary">Solar Ruiz</span> -->
+                </h1>
+                <div class="subheading mb-5">
+                    <span class="lang-subtituloProfesional"></span>
+
+                    <a href="mailto:name@email.com">hectorsolar99@gmail.com</a>
+                </div>
+                <p class="lead mb-2"> <span class="lang-subtituloPersonal"></span> </p>
+
+
+
+                <p class="mb-0"><span class="lang-descripcionPersonal1"></span></p>
+                <p class="mb-5"><span class="lang-descripcionPersonal2"></span></p>
+                <p class="mb-5"><span class="lang-descripcionPersonal3"></span></p>
+
+                <div class="social-icons">
+                    <a class="social-icon" href="https://www.linkedin.com/in/hesolar/"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-icon" href="https://github.com/hesolar"><i class="fab fa-github"></i></a>
+                    <a class="social-icon" href="https://stackoverflow.com/users/16686166/hesolar?tab=profile"><i class="fab fa-stack-overflow"></i></a>
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- aBOUT ME-->
+        <section class="resume-section" id="intereses">
+            <div class="resume-section-content">
+                <h2 class="mb-0">
+                    <span class="text-primary"> <span class="lang-navbar_intereses"></span></span>
+                </h2>
+                <p class="mb-0"><span class="lang-descripcionSobreMi1"></span></p>
+                <p>
+                    <span class="lang-descripcionSobreMi2"></span>
+
+                </p>
+                <p class="mb-5"><span class="lang-descripcionSobreMi3"></span></p>
+
+                    <img src="assets/img/personales/d.jpeg" width="200" height="250" />
+                    <img src="assets/img/personales/c.png" width="250" height="250" />
+                    <img src="assets/img/personales/a.jpeg" width="250" height="250" />
+
+
+                    <img src="assets/img/personales/b.png" width="250" height="250" />
+            </div>
+
+
+
+
+
+</section>
+        <hr class="m-0" />
+        <!-- Experience-->
+        <section class="resume-section" id="experiencia">
+            <div class="resume-section-content">
+                <h2 class="mb-0">
+                    <span class="text-primary"> <span class="lang-navbar_experiencia"></span></span>
+                </h2>
+                <br>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <img height="200" width="200" src="assets/img/logoHiberus.png" alt="Hiberus Tecnología">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Programador Web Junior</h3>
+                        <div class="subheading mb-3">Programador Web Junio para gobierno de Navarra</div>
+                        <p>
+                            Mi trabajo en gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.<br>
+                            <li>
+                                El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD.
+                                He podido colaborar con el proceso de CI/CD dentro de la organización a través de Jenkins, y mejorar la calidad del código a través de procesos de QA automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización con las necesidades que van surgiendo.
+
+                            </li>
+                            <li>
+                                En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área, utilizando principalmente la metodología SCRUM.
+                                Los productos elaborados se desarrollan principalmente con tecnologías .NET Framework (principalmente WebForms)
+                            </li>
+                        </p>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">jun. 2022 - actualidad · 5 meses</span></div>
+
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <img height="200" width="200" src="assets/img/logoHiberus.png" alt="Hiberus Tecnología">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Contrato de prácticas</h3>
+                        <div class="subheading mb-3">HIBERUS · Desarrollo trabajo fin de grado</div>
+                        <p>
+                            Desarrollo de proyecto de fin de grado en la empresa.
+                            Durante este periodo he desarrollado un microservicio para añadir funcionalidad a una aplicación existente automaticzando procesos relativos a la gestión de recursos humanos.
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">dic 2011 - marz. 2013 · 4 meses</span></div>
+
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <img height="200" width="200" src="assets/img/logoGnoss.png" alt="Gnoss Tecnología">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Contrato de prácticas</h3>
+                        <div class="subheading mb-3">GNOSS · Contrato de prácticas</div>
+                        <p>Prácticas obligatorias en el grado. Desarrollo Web orientado a cliente(BBVA), proyecto D4R(Data for Reputation).</p>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">sept. 2021 - dic. 2021 · 4 meses</span></div>
+
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between">
+                    <img width="200" height="200" src="assets/img/logoHiberus.png" alt="Hiberus Tecnología">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Contrato de prácticas</h3>
+                        <div class="subheading mb-3">Hiberus · Contrato de prácticas</div>
+                        <p>Desarrollo de aplicación NetCore para gestión de recursos humanos y personal.</p>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">jul. 2021 - sept. 2021 · 3 meses</span></div>
+
+                </div>
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Education-->
+        <section class="resume-section" id="educacion">
+            <div class="resume-section-content">
+
+                <h2 class="mb-0">
+                    <span class="text-primary"> <span class="lang-navbar_educacion"></span></span>
+                </h2>
+
+
+
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <img width="200" height="200" src="assets/img/logoUniversidad.png" alt="Universidad de La Rioja">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Universidad de La Rioja</h3>
+                        <div class="subheading mb-3"><span class="lang-descripcionUniversidad"></span></div>
+                        <div></div>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">Sep. 2017 - Jul. 2022</span></div>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <img width="200" height="200" src="assets/img/logoInstituto.jfif" alt="IES Valle del OJA">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">IES Valle del Oja</h3>
+                        <div class="subheading mb-3"><span class="lang-descripcionBachiller"></span></div>
+                        <div></div>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">Sep. 2015 - Jul 2017</span></div>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-between">
+                    <img width="200" height="200" src="assets/img/logoConservatorio.png" alt="Conservatorio de Haro">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">Conservatorio de Haro</h3>
+                        <div class="subheading mb-3"><span class="lang-descripcionConservatorio"></span></div>
+                        <p></p>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">Aug. 2012 - May 2016</span></div>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-between">
+                    <img width="200" height="200" src="assets/img/logoInstituto.jfif" alt="IES Valle del OJA">
+                    <div class="flex-grow-1">
+                        <h3 class="mb-0">IES Valle del Oja</h3>
+                        <div class="subheading mb-3"><span class="lang-descripcionEso"></span>  </div>
+                        <p></p>
+                    </div>
+                    <div class="flex-shrink-0"><span class="text-primary">Sep. 2011 - Jul. 2015</span></div>
+                </div>
+
+
+
+            </div>
+        </section>
+        <hr class="m-0" />
+        <!-- Skills-->
+        <section class="resume-section" id="tecnologias">
+            <div class="resume-section-content">
+                <h2 class="mb-0">
+                    <span class="text-primary"> <span class="lang-navbar_tecnologias"></span></span>
+                </h2>
+
+
+
+                <br>
+                <div class="subheading mb-3">Lenguajes de programación</div>
+                <ul class="fa-ul mb-0">
+
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        HTML, CSS, Javascript, C#, SQL
+                    </li>
+                </ul>
+
+                <ul class="list-inline dev-icons">
+
+                    <li class="list-inline-item"><img height="60" width="150" src="assets/icons/htmlcssjs.jfif" alt="HTML , CSS, JS"></li>
+                    <li class="list-inline-item"><img height="60" width="60" src="assets/icons/csharp.png" alt="c#"></li>
+                    <li class="list-inline-item"><img height="60" width="60" src="assets/icons/sql.png" alt="sql"></li>
+
+
+                </ul>
+
+                <br>
+                <div class="subheading mb-3">Frameworks</div>
+                <ul class="fa-ul mb-0">
+
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        .NET Core, .NET Framework, Blazor, MVC, EF, Swagger
+                    </li>
+                </ul>
+
+                <ul class="list-inline dev-icons">
+                    <li class="list-inline-item"><img height="60" width="60" src="assets/icons/dotnet.png" alt="dotnet"></li>
+                    <li class="list-inline-item"><img height="60" width="120" src="assets/icons/dotnetframework.png" alt="dotnet"></li>
+
+                    <li class="list-inline-item"><img height="60" width="60" src="assets/icons/blazor.png" alt="blazor"></li>
+                    <li class="list-inline-item"><img height="60" width="60" src="assets/icons/mvc.jfif" alt="mvc"></li>
+
+                    <li class="list-inline-item"><img height="60" width="90" src="assets/icons/efcore.png" alt="efcore"></li>
+                    <li class="list-inline-item"><img height="60" width="90" src="assets/icons/swaggeropenapi.png" alt="GIT"></li>
+                </ul>
+
+                <br>
+                <div class="subheading mb-3">Sistemas Control de Versiones SVC</div>
+
+                <ul class="fa-ul mb-0">
+
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        GIT, Github,Gitlab
+                    </li>
+                </ul>
+
+                <li class="list-inline-item"><img height="40" width="80" src="assets/icons/git.png" alt="GIT"></li>
+                <li class="list-inline-item"><img height="60" width="90" src="assets/icons/github.png" alt="github"></li>
+                <li class="list-inline-item"><img height="60" width="90" src="assets/icons/gitlab.png" alt="github"></li>
+
+                <br><br>
+                <div class="subheading mb-3">QA , CI , CD</div>
+                <ul class="fa-ul mb-0">
+
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        Jenkins, Docker, SonarQube
+                    </li>
+                </ul>
+                <li class="list-inline-item"><img height="60" width="90" src="assets/icons/jenkins.jfif" alt="Jenkins"></li>
+                <li class="list-inline-item"><img height="60" width="90" src="assets/icons/docker.png" alt="docker"></li>
+                <li class="list-inline-item"><img height="60" width="90" src="assets/icons/sonarqube.png" alt="sonarqube"></li>
+
+                <br>
+                <br>
+                <div class="subheading mb-3">Metodologías y principios</div>
+                <ul class="fa-ul mb-0">
+
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        Agile, Scrum, DDD & Clean Architecture, SOLID
+                    </li>
+
+
                 </ul>
             </div>
-        </nav>
-        <!-- Page Content-->
-        <div class="container-fluid p-0">
-            <!-- About-->
-            <section class="resume-section" id="sobremi">
-                <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Héctor Solar Ruiz
-                        <!-- <span class="text-primary">Solar Ruiz</span> -->
-                    </h1>
-                    <div class="subheading mb-5">
-                       Desarrollador 🙴 Ingeniero de Software ·
-                        <a href="mailto:name@email.com">hectorsolar99@gmail.com</a>
-                    </div>
-                    <p class="lead mb-2">Graduado en la Universidad de la Rioja en Ingeniería informática y mención en ingeniería de Software.
-					<p class="mb-0">Las tecnologías en las que me especializo son principalmente toda la pila tecnológica de ASP NET Core.</p>
-					<p class="mb-5">Me gusta todo el area relacionada con el desarrollo de aplicaciones y sus procesos de CI/CD.</p>
-					
-                    <div class="social-icons">
-                        <a class="social-icon" href="https://www.linkedin.com/in/hesolar/"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/hesolar"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="https://stackoverflow.com/users/16686166/hesolar?tab=profile"><i class="fab fa-stack-overflow"></i></a>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experiencia">
-                <div class="resume-section-content">
-					<h2 class="mb-0">
-                        <span class="text-primary"> Experiencia </span> 
-                    </h2>
-					<br>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img height="200" width="200" src="assets/img/logoHiberus.png" alt="Hiberus Tecnología">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Programador Web Junior</h3>
-                            <div class="subheading mb-3">Programador Web Junio para gobierno de Navarra</div>
-                            <p>Mi trabajo en gobierno de Navarra se puede dividir en dos áreas: GAD y Vivienda.<br>
-							  <li> 
-							El equipo GAD (Grupo de Arquitectura de Desarrollo) es un equipo transversal cuya función principal es apoyar a los desarrolladores en aspectos relacionados con el desarrollo e integración de sus productos en el proceso de CI/CD.
-He podido colaborar con el proceso de CI/CD dentro de la organización a través de Jenkins, y mejorar la calidad del código a través de procesos de QA automatizados con SonarQube, además de investigar y proponer nuevas tecnologías que ayuden a la organización con las necesidades que van surgiendo.
-
-							  </li>
-							  <li> En el área de vivienda, mis funciones son realizar trabajos de mantenimiento y mejora de los diferentes productos de esta área, utilizando principalmente la metodología SCRUM.
-Los productos elaborados se desarrollan principalmente con tecnologías .NET Framework (principalmente WebForms)</li></p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">jun. 2022 - actualidad · 5 meses</span></div>
-						
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img height="200" width="200" src="assets/img/logoHiberus.png" alt="Hiberus Tecnología">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Contrato de prácticas</h3>
-                            <div class="subheading mb-3">HIBERUS · Desarrollo trabajo fin de grado</div>
-                            <p>Desarrollo de proyecto de fin de grado en la empresa.
-							Durante este periodo he desarrollado un microservicio para añadir funcionalidad a una aplicación existente automaticzando procesos relativos a la gestión de recursos humanos.
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">dic 2011 - marz. 2013 · 4 meses</span></div>
-						
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img height="200" width="200" src="assets/img/logoGnoss.png" alt="Gnoss Tecnología">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Contrato de prácticas</h3>
-                            <div class="subheading mb-3">GNOSS · Contrato de prácticas</div>
-                            <p>Prácticas obligatorias en el grado. Desarrollo Web orientado a cliente(BBVA), proyecto D4R(Data for Reputation).</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">sept. 2021 - dic. 2021 · 4 meses</span></div>
-						
-                    </div>
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-						<img width="200" height="200" src="assets/img/logoHiberus.png" alt="Hiberus Tecnología">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Contrato de prácticas</h3>
-                            <div class="subheading mb-3">Hiberus · Contrato de prácticas</div>
-                            <p>Desarrollo de aplicación NetCore para gestión de recursos humanos y personal.</p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">jul. 2021 - sept. 2021 · 3 meses</span></div>
-						
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Education-->
-            <section class="resume-section" id="educacion">
-                <div class="resume-section-content">
-                   
-					<h2 class="mb-0">
-                        <span class="text-primary"> Educación </span> 
-                    </h2>
-					
-					
-					
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/img/logoUniversidad.png" alt="Universidad de La Rioja">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Universidad de La Rioja</h3>
-                            <div class="subheading mb-3">Grado en Ingeniería Informática e Ingeniería de Software</div>
-                            <div></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Sep. 2017 - Jul. 2022</span></div>
-                    </div>
-					
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/img/logoInstituto.jfif" alt="IES Valle del OJA">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">IES Valle del Oja</h3>
-                            <div class="subheading mb-3">Bachiller Científico</div>
-                            <div></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Sep. 2015 - Jul 2017</span></div>
-                    </div>
-					
-					<div class="d-flex flex-column flex-md-row justify-content-between">
-						<img width="200" height="200" src="assets/img/logoConservatorio.png" alt="Conservatorio de Haro">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Conservatorio de Haro</h3>
-                            <div class="subheading mb-3">Estudios Elementales de violín </div>
-							<p></p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Aug. 2012 - May 2016</span></div>
-                    </div>
-					
-                    <div class="d-flex flex-column flex-md-row justify-content-between">
-						<img width="200" height="200" src="assets/img/logoInstituto.jfif" alt="IES Valle del OJA">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">IES Valle del Oja</h3>
-                            <div class="subheading mb-3">Educación Secundaria Obligatoria  </div>
-							<p></p>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Sep. 2011 - Jul. 2015</span></div>
-                    </div>
-					
-					
-					
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Skills-->
-            <section class="resume-section" id="tecnologias">
-                <div class="resume-section-content">
-                    <h2 class="mb-0">
-                        <span class="text-primary"> Tecnologías </span> 
-                    </h2>
-					
-					
-
-					<br>
-                    <div class="subheading mb-3">Lenguajes de programación</div>
-					 <ul class="fa-ul mb-0">
-                        
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                           HTML, CSS, Javascript, C#, SQL
-                        </li>
-					</ul>
-					
-                    <ul class="list-inline dev-icons">
-					
-						<li class="list-inline-item"><img height="60" width="150" src="assets/icons/htmlcssjs.jfif" alt="HTML , CSS, JS"></li>
-						<li class="list-inline-item"><img height="60" width="60"  src="assets/icons/csharp.png" alt="c#"></li>
-						<li class="list-inline-item"><img height="60" width="60"  src="assets/icons/sql.png" alt="sql"></li>
-						
-                        
-                    </ul>
-					
-					<br>
-					<div class="subheading mb-3">Frameworks</div>
-					 <ul class="fa-ul mb-0">
-                        
-                        <li>
-                           <span class="fa-li"><i class="fas fa-check"></i></span>
-                          .NET Core, .NET Framework, Blazor, MVC, EF, Swagger
-                        </li>
-					</ul>
-					
-                    <ul class="list-inline dev-icons">
-						<li class="list-inline-item"><img height="60" width="60"  src="assets/icons/dotnet.png" alt="dotnet"></li>
-						<li class="list-inline-item"><img height="60" width="120"  src="assets/icons/dotnetframework.png" alt="dotnet"></li>
-                        
-                        <li class="list-inline-item"><img height="60" width="60"  src="assets/icons/blazor.png" alt="blazor"></li>
-                        <li class="list-inline-item"><img height="60" width="60"  src="assets/icons/mvc.jfif" alt="mvc"></li>
-                        
-                        <li class="list-inline-item"><img height="60" width="90"  src="assets/icons/efcore.png" alt="efcore"></li>
-                        <li class="list-inline-item"><img height="60" width="90"  src="assets/icons/swaggeropenapi.png" alt="GIT"></li>
-                    </ul> 
-					
-					<br>
-					<div class="subheading mb-3">Sistemas Control de Versiones SVC</div>
-					
-					 <ul class="fa-ul mb-0">
-                        
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                           GIT, Github
-                        </li>
-					</ul>
-					
-					<li class="list-inline-item"><img height="40" width="80"  src="assets/icons/git.png" alt="GIT"></li>
-					<li class="list-inline-item"><img height="60" width="90"  src="assets/icons/github.png" alt="github"></li>
-					
-					<br><br>
-					<div class="subheading mb-3">QA , CI , CD</div>
-					<ul class="fa-ul mb-0">
-                        
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Jenkins, Docker, SonarQube
-                        </li>
-					</ul>
-					<li class="list-inline-item"><img height="60" width="90"  src="assets/icons/jenkins.jfif" alt="Jenkins"></li>
-                    <li class="list-inline-item"><img height="60" width="90"  src="assets/icons/docker.png" alt="docker"></li>
-                    <li class="list-inline-item"><img height="60" width="90"  src="assets/icons/sonarqube.png" alt="sonarqube"></li>
-						
-					<br>
-					<br>
-                    <div class="subheading mb-3">Metodologías y principios</div>
-                    <ul class="fa-ul mb-0">
-                        
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Agile, Scrum, DDD & Clean Architecture, SOLID 
-                        </li>
-                
-						
-                    </ul>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Interests-->
-            <section class="resume-section" id="intereses">
-                <div class="resume-section-content">
-                    <h2 class="mb-0">
-                        <span class="text-primary"> Intereses </span> 
-                    </h2>
-                    <p class="mb-0">Sobre mi...</p>
-					<p>Desde pequeño he querido estudiar informática como forma de mejorar la vida de las personas y contribuir al progreso, aunque también tengo otras aficiones como la música , deportes o simplemente ver series😃.</p>
-                    <p class="mb-5" >Me considero una persona constante y trabajadora y creo que mi principal aptitud es el trabajo en equipo.</p>
-				
-                </div>
-            </section>
-            <hr class="m-0" />
-        </div>
-		
-		
-		
-		 
-		
-		<section class="resume-section" id="cursos">
-                <div class="resume-section-content">
-                   
-					<h2 class="mb-5">
-                        <span class="text-primary"> Cursos y Certificaciones </span> 
-                    </h2>
-					
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/icons/cursos/gobrioja.jfif" alt="Gobierno de la Rioja">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Curso de Blazor</h3>
-                            <div class="subheading mb-3">ID de la credencial Y83Q73BHZDJY9BF</div>
-                            <div><a href="https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos">Verificación de documentos electrónicos</a></div>
-                            <div><p>Desarrollo full stack utilizando blazor.</p></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">sept. 2022</span></div>
-                    </div>
-					
-                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/icons/cursos/gobrioja.jfif" alt="Gobierno de la Rioja">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Programación .NET</h3>
-                            <div class="subheading mb-3">ID de la credencial IYYS1J3Y8FGH5J5ID</div>
-                            <div><a href="https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos">Verificación de documentos electrónicos</a></div>
-                            <div><p>Se estudian aspectos básicos de la programación .NET desde el Front hasta Back. Usando principalmente mvc y sql server. </p></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">Jul. 2022</span></div>
-                    </div>
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/icons/cursos/googleactivate.png" alt="GoogleActivate">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Cloud Computing</h3>
-                            <div class="subheading mb-3">ID de las credencial: NZQ DVY NBU</div>
-                            <div><a href="https://learndigital.withgoogle.com/link/1nur091p2ww">Verificación de certificados</a></div>
-                            <div><p>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript </p></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">oct. 2021</span></div>
-                    </div>
-					
-					
-					
-					
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/icons/cursos/gobrioja.jfif" alt="Gobierno de la Rioja">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Contenedores Docker</h3>
-                            <div class="subheading mb-3">ID de la credencial: UXGJYIVF8J4JEZX</div>
-                            <div><a href="https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos">Verificación de documentos electrónicos</a></div>
-                            <div><p>Cursos orientado a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software. </p></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">sept. 2021</span></div>
-                    </div>
-					<div class="d-flex flex-column flex-md-row justify-content-between mb-5">
-						<img width="200" height="200" src="assets/icons/cursos/googleactivate.png" alt="GoogleActivate">
-                        <div class="flex-grow-1">
-                            <h3 class="mb-0">Introducción al desarrollo Web I y II</h3>
-                            <div class="subheading mb-3">IDs de las credenciales AAU 9KS DU9 & R3D SRM CTN</div>
-                            <div><a href="https://learndigital.withgoogle.com/link/1nur091p2ww">Verificación de certificados</a></div>
-                            <div><p>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript </p></div>
-                        </div>
-                        <div class="flex-shrink-0"><span class="text-primary">sept. 2021</span></div>
-                    </div>
-					
-				
-
-
-					
-                </div>
         </section>
-            <hr class="m-0" />
-		
-		
-		
-		
-		
-		
-		
-		
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+        <hr class="m-0" />
+
+    </div>
+
+
+
+
+
+    <section class="resume-section" id="cursos">
+        <div class="resume-section-content">
+
+            <h2 class="mb-5">
+                <span class="text-primary"> <span class="lang-cursosCertificaciones"></span> </span>
+            </h2>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <img width="200" height="200" src="assets/icons/cursos/gobrioja.jfif" alt="Gobierno de la Rioja">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Curso de Blazor</h3>
+                    <div class="subheading mb-3">ID de la credencial Y83Q73BHZDJY9BF</div>
+                    <div><a href="https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos">Verificación de documentos electrónicos</a></div>
+                    <div><p>Desarrollo full stack utilizando blazor.</p></div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">sept. 2022</span></div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <img width="200" height="200" src="assets/icons/cursos/gobrioja.jfif" alt="Gobierno de la Rioja">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Programación .NET</h3>
+                    <div class="subheading mb-3">ID de la credencial IYYS1J3Y8FGH5J5ID</div>
+                    <div><a href="https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos">Verificación de documentos electrónicos</a></div>
+                    <div><p>Se estudian aspectos básicos de la programación .NET desde el Front hasta Back. Usando principalmente mvc y sql server. </p></div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">Jul. 2022</span></div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <img width="200" height="200" src="assets/icons/cursos/googleactivate.png" alt="GoogleActivate">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Cloud Computing</h3>
+                    <div class="subheading mb-3">ID de las credencial: NZQ DVY NBU</div>
+                    <div><a href="https://learndigital.withgoogle.com/link/1nur091p2ww">Verificación de certificados</a></div>
+                    <div><p>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript </p></div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">oct. 2021</span></div>
+            </div>
+
+
+
+
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <img width="200" height="200" src="assets/icons/cursos/gobrioja.jfif" alt="Gobierno de la Rioja">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Contenedores Docker</h3>
+                    <div class="subheading mb-3">ID de la credencial: UXGJYIVF8J4JEZX</div>
+                    <div><a href="https://www.larioja.org/oficina-electronica/es/verificacion-documentos-electronicos">Verificación de documentos electrónicos</a></div>
+                    <div><p>Cursos orientado a aprender nociones básicas del uso de contenedores y su utilización en proyectos de software. </p></div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">sept. 2021</span></div>
+            </div>
+            <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                <img width="200" height="200" src="assets/icons/cursos/googleactivate.png" alt="GoogleActivate">
+                <div class="flex-grow-1">
+                    <h3 class="mb-0">Introducción al desarrollo Web I y II</h3>
+                    <div class="subheading mb-3">IDs de las credenciales AAU 9KS DU9 & R3D SRM CTN</div>
+                    <div><a href="https://learndigital.withgoogle.com/link/1nur091p2ww">Verificación de certificados</a></div>
+                    <div><p>Cursos orientado a aprender nociones básicas del desarrollo web utilizando HTML5 , CSS y Javascript </p></div>
+                </div>
+                <div class="flex-shrink-0"><span class="text-primary">sept. 2021</span></div>
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+    <hr class="m-0" />
+
+
+
+
+
+
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
 </html>
