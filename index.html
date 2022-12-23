@@ -174,12 +174,8 @@
 <style>
 
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
-}
 
-li {
+.liimagen {
 list-style: none;
   height: 40vh;
   flex-grow: 1;
@@ -190,7 +186,7 @@ li:last-child {
   flex-grow: 10;
 }
 
-img {
+.imgGaleria {
   max-height: 100%;
   min-width: 100%;
   object-fit: cover;
@@ -378,21 +374,19 @@ img {
 
 				<div class="container">
 				  <!-- heading text -->
-				  <ul class="image-gallery">
-					<li>
-					  <img src="assets/img/personales/d.jpeg" width="200" height="250" />
+				  <ul class="image-gallery" style="display: flex;  flex-wrap: wrap;">
+					<li class="liimagen">
+					  <img src="assets/img/personales/d.jpeg" width="200" height="250" class="imgGaleria"/>
 					</li>
 
-					<li>
-					  <img src="assets/img/personales/c.png" width="250" height="250" />
+					<li class="liimagen">
+					  <img src="assets/img/personales/c.png" width="250" height="250" class="imgGaleria"/>
 					</li>
-					<li>
-					  <img src="assets/img/personales/a.jpeg" width="250" height="250" />
-					</li>
-					<li>
-					  <img src="assets/img/personales/b.png" width="250" height="250" />
-					=
-					<!-- other items here -->
+					<li class="liimagen">
+					  <img src="assets/img/personales/a.jpeg" width="250" height="250" class="imgGaleria"/>
+					</li class="liimagen">
+					<li class="liimagen">
+					  <img src="assets/img/personales/b.png" width="250" height="250" class="imgGaleria"/>
 				  </ul>
 				</div>
 		   </div>
