@@ -173,6 +173,66 @@
 
 <style>
 
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+list-style: none;
+  height: 40vh;
+  flex-grow: 1;
+}
+
+li:last-child {
+  // There's no science in using "10" here. In all my testing, this delivered the best results.
+  flex-grow: 10;
+}
+
+img {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+// ADVANCED
+
+// Portrait
+
+@media (max-aspect-ratio: 1/1) {
+  li {
+    height: 30vh;
+  }
+}
+
+// Short screens
+
+@media (max-height: 480px) {
+  li {
+    height: 80vh;
+  }
+}
+
+// Smaller screens in portrait
+
+@media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+  ul {
+    flex-direction: row;
+  }
+
+  li {
+    height: auto;
+    width: 100%;
+  }
+  img {
+    width: 100%;
+    max-height: 75vh;
+    min-width: 0;
+  }
+}
+
     .box select {
         background-color: #1086c5;
         margin-left: 80%;
@@ -308,13 +368,34 @@
                 </p>
                 <p class="mb-5"><span class="lang-descripcionSobreMi3"></span></p>
 
-                <img src="assets/img/personales/d.jpeg" width="200" height="250" />
-                <img src="assets/img/personales/c.png" width="250" height="250" />
-                <img src="assets/img/personales/a.jpeg" width="250" height="250" />
+                
+                
+                
 
 
-                <img src="assets/img/personales/b.png" width="250" height="250" />
-            </div>
+                
+           
+
+				<div class="container">
+				  <!-- heading text -->
+				  <ul class="image-gallery">
+					<li>
+					  <img src="assets/img/personales/d.jpeg" width="200" height="250" />
+					</li>
+
+					<li>
+					  <img src="assets/img/personales/c.png" width="250" height="250" />
+					</li>
+					<li>
+					  <img src="assets/img/personales/a.jpeg" width="250" height="250" />
+					</li>
+					<li>
+					  <img src="assets/img/personales/b.png" width="250" height="250" />
+					=
+					<!-- other items here -->
+				  </ul>
+				</div>
+		   </div>
 
 
 
